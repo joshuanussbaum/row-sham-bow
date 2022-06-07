@@ -4,57 +4,43 @@ const options = [`rock`, `paper`, `scissors`];
 let playerWins = 0;
 
 function computerPlay() {
-    const computerChoice = Math.floor(Math.random()*3);
-    // console.log(computerChoice);
-    // console.log(options[computerChoice]);
-    return options[computerChoice];
+    const computerPick = Math.floor(Math.random()*3);
+    return options[computerPick];
+}
+
+function victoryCheck(playerChoice, computerChoice) {
+    const outcomes = [`You Win! ${playerChoice} beats ${computerChoice}`, `You Lose! ${computerChoice} beats ${playerChoice}`];
+    let conditions = {
+        rock: `scissors`,
+        paper: `rock`,
+        scissors: `paper`
+    } 
+    if (conditions[playerChoice] === computerChoice) {
+        playerWins++;
+        return outcomes[0];
+    }
+    return outcomes[1];
+    
 }
 
 function playRound(playerSelection, computerSelection) {
     const playerChoice = playerSelection.toLowerCase();
-    let roundResult = ``;
-    const outcomes = [`You Win! ${playerChoice} beats ${computerSelection}`, `You Lose! ${computerSelection} beats ${playerChoice}`];
+    const computerChoice = computerSelection;
     if (!options.includes(playerChoice)) {
         console.log(`Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`); 
         return playRound(prompt(), computerPlay());
     }
-    if (playerChoice === computerSelection) {
+    if (playerChoice === computerChoice) {
         console.log(`It's A Tie! You Both Picked ${playerChoice}`);
         console.log(`Please, select Rock, Paper, or Scissors.`);
         return playRound(prompt(), computerPlay());
     }
     else { 
-        // TODO: factor this out into a helpter function.
-        if (playerChoice === `rock`) {
-            if (computerSelection === `scissors`) {
-                roundResult = outcomes[0];
-                playerWins ++;
-            }
-            else {
-                roundResult = outcomes[1];
-            }
+        return victoryCheck(playerChoice, computerChoice);        
         }
-        else if (playerChoice === `paper`) {
-            if (computerSelection === `rock`) {
-                roundResult = outcomes[0];
-                playerWins ++;
-            }
-            else {
-                roundResult = outcomes[1];
-            }
-        }
-        else {
-            if (computerSelection === `paper`) {
-                roundResult = outcomes[0];
-                playerWins ++;
-            }
-            else {
-                roundResult = outcomes[1];
-            }
-        }
-        return roundResult;
+
     }
-}
+
 
 function game() {
     playerWins = 0;
