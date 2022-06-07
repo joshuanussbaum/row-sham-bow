@@ -20,16 +20,21 @@ function victoryCheck(playerChoice, computerChoice) {
         return outcomes[0];
     }
     return outcomes[1];
-    
+}
+
+function sanityCheck(selection) {
+    selection = playerSelection.toLowerCase();
+    if (!options.includes(playerChoice)) {
+        console.log(`Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`); 
+        return sanityCheck(prompt());
+    }
+    return selection;
+
 }
 
 function playRound(playerSelection, computerSelection) {
-    const playerChoice = playerSelection.toLowerCase();
+    const playerChoice = sanityCheck(playerSelection);
     const computerChoice = computerSelection;
-    if (!options.includes(playerChoice)) {
-        console.log(`Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`); 
-        return playRound(prompt(), computerPlay());
-    }
     if (playerChoice === computerChoice) {
         console.log(`It's A Tie! You Both Picked ${playerChoice}`);
         console.log(`Please, select Rock, Paper, or Scissors.`);
@@ -66,11 +71,3 @@ function game() {
 }
 
 
-// const playerSelection = "rock";
-// const computerSelection = computerPlay();
-// console.log(playRound(playerSelection, computerSelection));
-
-
-// Create a function called game(). 
-// go through previous functions to see how you can make them better
-// think about what can be made into a "helper function" so each function only does ONE thing
