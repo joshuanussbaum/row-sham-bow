@@ -1,7 +1,7 @@
 // Computer Play Function:
     // Randomly return a number between 1 and 3 (or 0 and 2) that's converted to 'Rock' 'Paper' or 'Scissors
 
-const options = ['rock', 'paper', 'scissors'];
+const options = [`rock`, `paper`, `scissors`];
 function computerPlay() {
     const computerChoice = Math.floor(Math.random()*3);
     // console.log(computerChoice);
@@ -11,24 +11,24 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     const playerChoice = playerSelection.toLowerCase();
-    let roundResult = '';
+    let roundResult = ``;
     const outcomes = [`You Win! ${playerChoice} beats ${computerSelection}`, `You Lose! ${computerSelection} beats ${playerChoice}`];
     if (!options.includes(playerChoice)) {
-        return "Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)"; 
+        return `Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`; 
     }
     if (playerChoice === computerSelection) {
         roundResult = `It's A Tie! You Both Picked ${playerChoice}`;
     }
-    else if (playerChoice === 'rock') {
-        if (computerSelection === 'scissors') {
+    else if (playerChoice === `rock`) {
+        if (computerSelection === `scissors`) {
             roundResult = outcomes[0];
         }
         else {
             roundResult = outcomes[1];
         }
     }
-    else if (playerChoice === 'paper') {
-        if (computerSelection === 'rock') {
+    else if (playerChoice === `paper`) {
+        if (computerSelection === `rock`) {
             roundResult = outcomes[0];
         }
         else {
@@ -36,7 +36,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
     else {
-        if (computerSelection === 'paper') {
+        if (computerSelection === `paper`) {
             roundResult = outcomes[0];
         }
         else {
@@ -46,8 +46,21 @@ function playRound(playerSelection, computerSelection) {
     return roundResult;
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    console.log('Welcome!')
+    console.log(`Let's Play Rock, Paper, Scissors!`)
+}
 
 
+// const playerSelection = "rock";
+// const computerSelection = computerPlay();
+// console.log(playRound(playerSelection, computerSelection));
+
+
+// Create a function called game(). 
+// Call playRound() inside of game for 5 rounds
+// Tally wins/losses and report the final winner. 
+// Use console.log to display the results of each round and the winner at the end
+// use prompt() for user input
+// go through previous functions to see how you can make them better
+// think about what can be made into a "helper function" so each function only does ONE thing
