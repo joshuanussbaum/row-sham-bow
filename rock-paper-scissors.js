@@ -2,6 +2,8 @@
     // Randomly return a number between 1 and 3 (or 0 and 2) that's converted to 'Rock' 'Paper' or 'Scissors
 
 const options = [`rock`, `paper`, `scissors`];
+let playerWins = 0;
+
 function computerPlay() {
     const computerChoice = Math.floor(Math.random()*3);
     // console.log(computerChoice);
@@ -47,8 +49,21 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    console.log('Welcome!')
-    console.log(`Let's Play Rock, Paper, Scissors!`)
+    console.log('Welcome!');
+    console.log(`Let's Play Rock, Paper, Scissors!`);
+    console.log(`Best of 5 Rounds Wins!`);
+    for (let i = 0; i < 5; i++) {
+        console.log(`Please, select Rock, Paper, or Scissors.`);
+        console.log(playRound(prompt(), computerPlay()));
+        console.log(`Current Score: Player = ${playerWins}, Computer = ${(i+1) - playerWins}`);
+    }
+    if (playerWins > 2) {
+        console.log(`You Win The Game! Congratulations!`);
+    }
+    else {
+        console.log(`You Lose The Game! Sorry!`);
+    }
+    console.log(`Play Again? Y/N`);
 }
 
 
