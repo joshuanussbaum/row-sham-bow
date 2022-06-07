@@ -16,7 +16,8 @@ function playRound(playerSelection, computerSelection) {
     let roundResult = ``;
     const outcomes = [`You Win! ${playerChoice} beats ${computerSelection}`, `You Lose! ${computerSelection} beats ${playerChoice}`];
     if (!options.includes(playerChoice)) {
-        return `Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`; 
+        console.log(`Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`); 
+        return playRound(prompt(), computerPlay());
     }
     if (playerChoice === computerSelection) {
         roundResult = `It's A Tie! You Both Picked ${playerChoice}`;
@@ -49,6 +50,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+    playerWins = 0;
     console.log('Welcome!');
     console.log(`Let's Play Rock, Paper, Scissors!`);
     console.log(`Best of 5 Rounds Wins!`);
@@ -64,6 +66,10 @@ function game() {
         console.log(`You Lose The Game! Sorry!`);
     }
     console.log(`Play Again? Y/N`);
+    const answer = prompt().charAt(0).toLowerCase();
+    if (answer === `y`) {
+        game();
+    }
 }
 
 
