@@ -1,5 +1,4 @@
-// Computer Play Function:
-    // Randomly return a number between 1 and 3 (or 0 and 2) that's converted to 'Rock' 'Paper' or 'Scissors
+// TODO: Look at refactoring - how can you get the same results with less code?
 
 const options = [`rock`, `paper`, `scissors`];
 let playerWins = 0;
@@ -20,33 +19,41 @@ function playRound(playerSelection, computerSelection) {
         return playRound(prompt(), computerPlay());
     }
     if (playerChoice === computerSelection) {
-        roundResult = `It's A Tie! You Both Picked ${playerChoice}`;
+        console.log(`It's A Tie! You Both Picked ${playerChoice}`);
+        console.log(`Please, select Rock, Paper, or Scissors.`);
+        return playRound(prompt(), computerPlay());
     }
-    else if (playerChoice === `rock`) {
-        if (computerSelection === `scissors`) {
-            roundResult = outcomes[0];
+    else { 
+        // TODO: factor this out into a helpter function.
+        if (playerChoice === `rock`) {
+            if (computerSelection === `scissors`) {
+                roundResult = outcomes[0];
+                playerWins ++;
+            }
+            else {
+                roundResult = outcomes[1];
+            }
+        }
+        else if (playerChoice === `paper`) {
+            if (computerSelection === `rock`) {
+                roundResult = outcomes[0];
+                playerWins ++;
+            }
+            else {
+                roundResult = outcomes[1];
+            }
         }
         else {
-            roundResult = outcomes[1];
+            if (computerSelection === `paper`) {
+                roundResult = outcomes[0];
+                playerWins ++;
+            }
+            else {
+                roundResult = outcomes[1];
+            }
         }
+        return roundResult;
     }
-    else if (playerChoice === `paper`) {
-        if (computerSelection === `rock`) {
-            roundResult = outcomes[0];
-        }
-        else {
-            roundResult = outcomes[1];
-        }
-    }
-    else {
-        if (computerSelection === `paper`) {
-            roundResult = outcomes[0];
-        }
-        else {
-            roundResult = outcomes[1];
-        }
-    }
-    return roundResult;
 }
 
 function game() {
@@ -79,9 +86,5 @@ function game() {
 
 
 // Create a function called game(). 
-// Call playRound() inside of game for 5 rounds
-// Tally wins/losses and report the final winner. 
-// Use console.log to display the results of each round and the winner at the end
-// use prompt() for user input
 // go through previous functions to see how you can make them better
 // think about what can be made into a "helper function" so each function only does ONE thing
