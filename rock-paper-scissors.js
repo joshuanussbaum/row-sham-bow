@@ -12,12 +12,12 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     const playerChoice = playerSelection.toLowerCase();
     let roundResult = '';
-    const outcomes = [`You Win! $(playerChoice) beats $(computerSelection)`, `You Lose! $(computerSelection) beats $(playerSelection)`];
+    const outcomes = [`You Win! ${playerChoice} beats ${computerSelection}`, `You Lose! ${computerSelection} beats ${playerChoice}`];
     if (!options.includes(playerChoice)) {
         return "Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)"; 
     }
     if (playerChoice === computerSelection) {
-        roundResult = `It's A Tie! You Both Picked $(playerChoice)`;
+        roundResult = `It's A Tie! You Both Picked ${playerChoice}`;
     }
     else if (playerChoice === 'rock') {
         if (computerSelection === 'scissors') {
