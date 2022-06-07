@@ -23,12 +23,12 @@ function victoryCheck(playerChoice, computerChoice) {
 }
 
 function sanityCheck(selection) {
-    selection = playerSelection.toLowerCase();
-    if (!options.includes(playerChoice)) {
+    check = selection.toLowerCase();
+    if (!options.includes(check)) {
         console.log(`Invalid Entry, please make sure you've entered Rock, Paper, or Scissors! (capitalization doesn't matter, but spelling does!)`); 
         return sanityCheck(prompt());
     }
-    return selection;
+    return check;
 
 }
 
