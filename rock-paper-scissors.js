@@ -49,20 +49,24 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     playerWins = 0;
+    let playCount = 0;
     console.log('Welcome!');
     console.log(`Let's Play Rock, Paper, Scissors!`);
-    console.log(`Best of 5 Rounds Wins!`);
-    for (let i = 0; i < 5; i++) {
+    console.log(`How many rounds do you want to play?!`);
+    // Add some buttons - for Bo1, Bo3, Bo5, or Bo7!
+    playCount = 5; // TODO: Set this to the answer you from the buttons!
+    let winThreshold = Math.round(playCount / 2); 
+    for (let i = 0; i < playCount; i++) {
         console.log(`Please, select Rock, Paper, or Scissors.`);
         console.log(playRound(prompt(), computerPlay()));
         console.log(`Current Score: Player = ${playerWins}, Computer = ${(i+1) - playerWins}`);
     }
-    if (playerWins > 2) {
+    if (playerWins >= winThreshold) {
         console.log(`You Win The Game! Congratulations!`);
     }
     else {
         console.log(`You Lose The Game! Sorry!`);
-    }
+    } // TODO: Make this a dedicated function!
     console.log(`Play Again? Y/N`);
     const answer = prompt().charAt(0).toLowerCase();
     if (answer === `y`) {
